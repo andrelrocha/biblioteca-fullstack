@@ -1,0 +1,10 @@
+Operações:
+1. Realizar login como bibliotecário e usuário.
+2. Apenas o usuário pode alterar seus dados.
+3. Apenas bibliotecário pode cadastrar, editar e remover livros e listar todos os usuários.   -- OK!!!!!
+4. Fazer empréstimos de livros.
+5. Devolver um livro.
+6. Sugerir livro.
+7. Exibir um relatório com:
+a. Todos os empréstimos de um usuário e quanto ele gastou.
+b. Todos os empréstimos daquele livro.
