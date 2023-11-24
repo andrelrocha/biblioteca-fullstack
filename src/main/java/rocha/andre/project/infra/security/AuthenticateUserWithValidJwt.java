@@ -1,9 +1,10 @@
 package rocha.andre.project.infra.security;
 
-import jr.acens.api.domain.user.User;
-import jr.acens.api.domain.user.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import rocha.andre.project.domain.user.User;
+import rocha.andre.project.domain.user.UserRepository;
 
 @Component
 public class AuthenticateUserWithValidJwt {
