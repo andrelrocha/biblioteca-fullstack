@@ -28,12 +28,12 @@ public class SecurityConfigurations {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .cors(withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(req -> {
-                    req.requestMatchers(HttpMethod.PUT, "/users/**").hasRole("USER");
+
                     req.requestMatchers(HttpMethod.POST, "/users/**").permitAll();
+                    req.requestMatchers(HttpMethod.PUT, "/users/**").hasRole("USER");
                     req.requestMatchers(HttpMethod.GET, "/users/listall").hasRole("BIBLIOTECARIO");
                     req.requestMatchers(HttpMethod.POST, "/livros/**").hasRole("BIBLIOTECARIO");
                     req.requestMatchers(HttpMethod.PUT, "/livros/**").hasRole("BIBLIOTECARIO");

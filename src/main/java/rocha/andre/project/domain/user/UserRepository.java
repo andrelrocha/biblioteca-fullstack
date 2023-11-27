@@ -14,4 +14,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
             FROM User u WHERE u.matricula = :matricula
             """)
     boolean userExistsByMatricula(String matricula);
+
+    @Query("""
+            SELECT CASE WHEN COUNT(u) > 0 THEN true 
+            ELSE false END 
+            FROM User u WHERE u.login = :login
+            """)
+    boolean userExistsByLogin(String login);
 }

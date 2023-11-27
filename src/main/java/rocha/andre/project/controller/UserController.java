@@ -5,12 +5,10 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import rocha.andre.project.domain.user.DTO.TokenJwtDTO;
 import rocha.andre.project.domain.user.DTO.UserDTO;
+import rocha.andre.project.domain.user.DTO.UserLoginDTO;
 import rocha.andre.project.service.UserService;
 
 @RestController
@@ -21,8 +19,8 @@ public class UserController {
 
     @PostMapping("/login")
     @Transactional
-    public ResponseEntity performLogin(@RequestBody @Valid UserDTO data) {
-        TokenJwtDTO tokenJwt = userService.performLogin(data);
+    public ResponseEntity performLogin(@RequestBody @Valid UserLoginDTO data) {
+        var tokenJwt = userService.performLogin(data);
         return ResponseEntity.ok(tokenJwt);
     }
 
@@ -31,5 +29,11 @@ public class UserController {
     public ResponseEntity createUser(@RequestBody @Valid UserDTO data) {
         var newUser = userService.createUser(data);
         return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
+    }
+
+    @GetMapping("/listall")
+    public ResponseEntity listAllUsers() {
+        var users = userService.listAllUsers();
+        return ResponseEntity.ok(users);
     }
 }

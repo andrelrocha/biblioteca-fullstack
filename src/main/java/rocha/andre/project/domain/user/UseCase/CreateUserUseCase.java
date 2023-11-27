@@ -22,10 +22,15 @@ public class CreateUserUseCase {
 
     public UserReturnDTO createUser(UserDTO data) {
         var matriculaString = String.valueOf(data.matricula());
-        boolean userExists = userRepository.userExistsByMatricula(matriculaString);
+        boolean userExistsByMatricula = userRepository.userExistsByMatricula(matriculaString);
+        boolean userExistsByLogin = userRepository.userExistsByLogin(data.login());
 
-        if (userExists) {
+        if (userExistsByMatricula) {
             throw new ValidationException("Já existe uma conta cadastrada com a matricula informada.");
+        }
+
+        if (userExistsByLogin) {
+            throw new ValidationException("Já existe uma conta cadastrada com o login informado.");
         }
 
         var newUser = new User(data);

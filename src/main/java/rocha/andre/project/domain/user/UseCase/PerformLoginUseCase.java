@@ -6,7 +6,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import rocha.andre.project.domain.user.DTO.TokenJwtDTO;
-import rocha.andre.project.domain.user.DTO.UserDTO;
+import rocha.andre.project.domain.user.DTO.UserLoginDTO;
 import rocha.andre.project.domain.user.User;
 import rocha.andre.project.infra.security.TokenService;
 
@@ -18,12 +18,15 @@ public class PerformLoginUseCase {
     @Autowired
     TokenService tokenService;
 
-    public TokenJwtDTO performLogin(UserDTO data) {
+    public TokenJwtDTO performLogin(UserLoginDTO data) {
         var authenticationToken = new UsernamePasswordAuthenticationToken(data.login(), data.senha());
 
         //está chamando authenticateService
+
         Authentication authentication = manager.authenticate(authenticationToken);
+
         var userAuthenticated = (User) authentication.getPrincipal();
+
 
         String tokenJwt = tokenService.generateJwtToken(userAuthenticated);
 

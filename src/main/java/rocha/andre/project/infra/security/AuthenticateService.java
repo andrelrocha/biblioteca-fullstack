@@ -13,8 +13,8 @@ public class AuthenticateService implements UserDetailsService {
     private UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
         //userDetails recebe role-authority do user
-        return userRepository.findByLogin(username);
+        return userRepository.findByLogin(login);
     }
 }

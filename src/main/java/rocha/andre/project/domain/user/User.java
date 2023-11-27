@@ -55,22 +55,22 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     public void setPassword(String encodedPassword) {
@@ -82,8 +82,9 @@ public class User implements UserDetails {
         if (data.login() != null) {
             this.login = data.login();
         }
-        if (data.matricula() != 0) {
-            this.matricula = data.matricula();
+
+        if (data.tipo() != null) {
+            this.tipo = data.tipo();
         }
 
     }
