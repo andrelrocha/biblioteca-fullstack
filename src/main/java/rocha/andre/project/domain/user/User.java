@@ -29,10 +29,10 @@ public class User implements UserDetails {
     private Role tipo;
 
 
-    public User (UserDTO data) {
-        this.matricula = data.matricula();
+    public User (UserDTO data, int matricula) {
         this.login = data.login();
         this.tipo = data.tipo();
+        this.matricula = matricula;
     }
 
     @Override

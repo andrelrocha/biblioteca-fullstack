@@ -9,6 +9,8 @@ import rocha.andre.project.domain.user.User;
 import rocha.andre.project.domain.user.UserRepository;
 import rocha.andre.project.infra.exceptions.ValidationException;
 
+import java.util.Random;
+
 @Component
 public class CreateUserUseCase {
     @Autowired
@@ -21,19 +23,14 @@ public class CreateUserUseCase {
     private CSVExporterUser csvExporterUser;
 
     public UserReturnDTO createUser(UserDTO data) {
-        var matriculaString = String.valueOf(data.matricula());
-        boolean userExistsByMatricula = userRepository.userExistsByMatricula(matriculaString);
         boolean userExistsByLogin = userRepository.userExistsByLogin(data.login());
-
-        if (userExistsByMatricula) {
-            throw new ValidationException("Já existe uma conta cadastrada com a matricula informada.");
-        }
 
         if (userExistsByLogin) {
             throw new ValidationException("Já existe uma conta cadastrada com o login informado.");
         }
 
-        var newUser = new User(data);
+        var matriculaInt = geraMatricula();
+        var newUser = new User(data, matriculaInt);
 
         String encodedPassword = bCryptPasswordEncoder.encode(data.senha());
         newUser.setPassword(encodedPassword);
@@ -43,5 +40,17 @@ public class CreateUserUseCase {
         csvExporterUser.exportUsersToCSV();
 
         return new UserReturnDTO(userOnDb);
+    }
+
+    public int geraMatricula() {
+        var random = new Random();
+        var matricula = String.valueOf(random.nextInt(100000) + 1);
+        boolean userExistsByMatricula = userRepository.userExistsByMatricula(matricula);
+        while (userExistsByMatricula) {
+            matricula = String.valueOf(random.nextInt(100000) + 1);
+            userExistsByMatricula = userRepository.userExistsByMatricula(matricula);
+        }
+
+        return Integer.parseInt(matricula);
     }
 }
