@@ -17,11 +17,15 @@ public class CreateUserUseCase {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    private CSVExporterUser csvExporterUser;
+
     public UserReturnDTO createUser(UserDTO data) {
-        boolean userExists = userRepository.userExistsByLogin(data.login());
+        var matriculaString = String.valueOf(data.matricula());
+        boolean userExists = userRepository.userExistsByMatricula(matriculaString);
 
         if (userExists) {
-            throw new ValidationException("Já existe uma conta cadastrada com o login informado");
+            throw new ValidationException("Já existe uma conta cadastrada com a matricula informada.");
         }
 
         var newUser = new User(data);
@@ -30,6 +34,8 @@ public class CreateUserUseCase {
         newUser.setPassword(encodedPassword);
 
         var userOnDb = userRepository.save(newUser);
+
+        csvExporterUser.exportUsersToCSV();
 
         return new UserReturnDTO(userOnDb);
     }
