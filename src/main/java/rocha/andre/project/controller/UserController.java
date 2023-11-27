@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import rocha.andre.project.domain.user.DTO.TokenJwtDTO;
 import rocha.andre.project.domain.user.DTO.UserDTO;
 import rocha.andre.project.domain.user.DTO.UserLoginDTO;
+import rocha.andre.project.domain.user.DTO.UserUpdateDTO;
 import rocha.andre.project.service.UserService;
 
 @RestController
@@ -41,5 +42,11 @@ public class UserController {
     public ResponseEntity listUserById(@PathVariable String tokenJWT) {
         var user = userService.listUserById(tokenJWT);
         return ResponseEntity.ok(user);
+    }
+
+    @PutMapping("/{tokenJWT}")
+    public ResponseEntity updateUser(@RequestBody UserUpdateDTO data, @PathVariable String tokenJWT) {
+        var updatedUser = userService.updateUser(data, tokenJWT);
+        return ResponseEntity.ok(updatedUser);
     }
 }
