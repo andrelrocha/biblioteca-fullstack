@@ -9,6 +9,7 @@ import rocha.andre.project.domain.user.DTO.UserLoginDTO;
 import rocha.andre.project.domain.user.DTO.UserReturnDTO;
 import rocha.andre.project.domain.user.UseCase.CreateUserUseCase;
 import rocha.andre.project.domain.user.UseCase.ListAllUsersUseCase;
+import rocha.andre.project.domain.user.UseCase.ListUserByIdUseCase;
 import rocha.andre.project.domain.user.UseCase.PerformLoginUseCase;
 import rocha.andre.project.service.UserService;
 
@@ -21,6 +22,8 @@ public class UserServiceImpl implements UserService {
     private CreateUserUseCase createUserUseCase;
     @Autowired
     private ListAllUsersUseCase listAllUsersUseCase;
+    @Autowired
+    private ListUserByIdUseCase listUserByIdUseCase;
     @Autowired
     private PerformLoginUseCase performLoginUseCase;
 
@@ -40,5 +43,11 @@ public class UserServiceImpl implements UserService {
     public List<UserReturnDTO> listAllUsers() {
         var users = listAllUsersUseCase.listAllUsers();
         return users;
+    }
+
+    @Override
+    public UserReturnDTO listUserById(String tokenJWT) {
+        var user = listUserByIdUseCase.listUserById(tokenJWT);
+        return user;
     }
 }

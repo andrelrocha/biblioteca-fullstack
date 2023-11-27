@@ -36,4 +36,10 @@ public class UserController {
         var users = userService.listAllUsers();
         return ResponseEntity.ok(users);
     }
+
+    @GetMapping("/{tokenJWT}")
+    public ResponseEntity listUserById(@PathVariable String tokenJWT) {
+        var user = userService.listUserById(tokenJWT);
+        return ResponseEntity.ok(user);
+    }
 }

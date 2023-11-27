@@ -11,4 +11,5 @@ public interface UserService {
     TokenJwtDTO performLogin(UserLoginDTO data);
     UserReturnDTO createUser(UserDTO data);
     List<UserReturnDTO> listAllUsers();
+    UserReturnDTO listUserById(String tokenJWT);
 }

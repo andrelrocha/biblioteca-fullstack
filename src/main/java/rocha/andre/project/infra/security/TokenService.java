@@ -4,6 +4,8 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.Claim;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import rocha.andre.project.domain.user.User;
@@ -44,6 +46,22 @@ public class TokenService {
                     .getSubject();
 
             return userVerified;
+        } catch (JWTVerificationException exception){
+            throw new RuntimeException("Invalid or expired JWT token.");
+        }
+    }
+
+    public Claim getUserIdFromToken(String tokenJwt) {
+        try {
+            Algorithm algorithm = Algorithm.HMAC256(secret);
+            DecodedJWT jwt = JWT.require(algorithm)
+                    .withIssuer("andre-rocha")
+                    .build()
+                    .verify(tokenJwt);
+
+            Claim userIdClaim = jwt.getClaim("id");
+
+            return userIdClaim;
         } catch (JWTVerificationException exception){
             throw new RuntimeException("Invalid or expired JWT token.");
         }
