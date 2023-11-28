@@ -28,6 +28,7 @@ public class SecurityConfigurations {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
+                .cors(withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(req -> {
@@ -43,6 +44,7 @@ public class SecurityConfigurations {
                     //falta checar ainda os requisitos de permissão de rotas
                     req.anyRequest().authenticated();
                 })
+
                 .addFilterBefore(securityFilterApplication, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

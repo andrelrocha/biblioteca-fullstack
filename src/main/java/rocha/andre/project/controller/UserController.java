@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import rocha.andre.project.domain.user.DTO.TokenJwtDTO;
 import rocha.andre.project.domain.user.DTO.UserDTO;
 import rocha.andre.project.domain.user.DTO.UserLoginDTO;
 import rocha.andre.project.domain.user.DTO.UserUpdateDTO;
