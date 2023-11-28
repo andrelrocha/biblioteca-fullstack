@@ -22,6 +22,11 @@ public class LivroController {
         return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(livro);
     }
 
+    @GetMapping
+    public ResponseEntity getAllLivros() {
+        var todosLivros = livroService.getAllLivros();
+        return ResponseEntity.ok(todosLivros);
+    }
 
     @GetMapping("/sugestao")
     public ResponseEntity sugestaoLivro() {
