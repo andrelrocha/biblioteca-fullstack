@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rocha.andre.project.domain.livro.DTO.LivroDTO;
 import rocha.andre.project.domain.livro.DTO.LivroReturnDTO;
+import rocha.andre.project.domain.livro.DTO.UpdateLivroDTO;
 import rocha.andre.project.service.LivroService;
 
 @RestController
@@ -39,6 +40,12 @@ public class LivroController {
     public ResponseEntity sugestaoLivro() {
         var livroSugestao = livroService.sugestaoLivro();
         return ResponseEntity.ok(livroSugestao);
+    }
+
+    @PutMapping("/{livroId}")
+    public ResponseEntity<LivroReturnDTO> updateLivro(@RequestBody UpdateLivroDTO data, @PathVariable String livroId) {
+        var livro = livroService.updateLivro(data, livroId);
+        return ResponseEntity.ok(livro);
     }
 
 }

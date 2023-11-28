@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import rocha.andre.project.domain.livro.DTO.LivroDTO;
+import rocha.andre.project.domain.livro.DTO.UpdateLivroDTO;
 
 @Table(name = "livros")
 @Entity(name = "Livro")
@@ -59,5 +60,23 @@ public class Livro {
 
     public void setQuantidadeEstoque(int quantidadeEstoque) {
         this.quantidadeEstoque = quantidadeEstoque;
+    }
+
+    public void updateLivro(UpdateLivroDTO data) {
+        if (data.titulo() != null) {
+            this.titulo = data.titulo();
+        }
+
+        if (data.autor() != null) {
+            this.autor = data.autor();
+        }
+
+        if (data.assunto() != null) {
+            this.assunto = data.assunto();
+        }
+
+        if (data.quantidadeEstoque() != 0) {
+            this.quantidadeEstoque = data.quantidadeEstoque();
+        }
     }
 }
