@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface LivroService {
     LivroReturnDTO createLivro(LivroDTO data);
+    void deleteLivro(long livroId);
     List<LivroReturnDTO> getAllLivros();
 
 

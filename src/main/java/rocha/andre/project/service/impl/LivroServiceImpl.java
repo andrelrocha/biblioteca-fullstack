@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import rocha.andre.project.domain.livro.DTO.LivroDTO;
 import rocha.andre.project.domain.livro.DTO.LivroReturnDTO;
 import rocha.andre.project.domain.livro.UseCase.CreateLivroUseCase;
+import rocha.andre.project.domain.livro.UseCase.DeleteLivroUseCase;
 import rocha.andre.project.domain.livro.UseCase.GetAllLivrosUseCase;
 import rocha.andre.project.domain.livro.UseCase.GetRandomLivroUseCase;
 import rocha.andre.project.service.LivroService;
@@ -17,6 +18,9 @@ public class LivroServiceImpl implements LivroService {
     private CreateLivroUseCase createLivroUseCase;
 
     @Autowired
+    private DeleteLivroUseCase deleteLivroUseCase;
+
+    @Autowired
     private GetAllLivrosUseCase getAllLivrosUseCase;
 
     @Autowired
@@ -26,6 +30,11 @@ public class LivroServiceImpl implements LivroService {
     public LivroReturnDTO createLivro(LivroDTO data) {
         var livro = createLivroUseCase.createLivro(data);
         return livro;
+    }
+
+    @Override
+    public void deleteLivro(long livroId) {
+        deleteLivroUseCase.deleteLivro(livroId);
     }
 
     @Override

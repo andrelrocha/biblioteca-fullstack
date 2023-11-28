@@ -22,6 +22,13 @@ public class LivroController {
         return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(livro);
     }
 
+    @DeleteMapping("/{livroId}")
+    @Transactional
+    public ResponseEntity deleteLivro(@PathVariable long livroId) {
+        livroService.deleteLivro(livroId);
+        return ResponseEntity.noContent().build();
+    }
+
     @GetMapping
     public ResponseEntity getAllLivros() {
         var todosLivros = livroService.getAllLivros();
