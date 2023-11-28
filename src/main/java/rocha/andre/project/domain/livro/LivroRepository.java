@@ -15,4 +15,9 @@ public interface LivroRepository extends JpaRepository<Livro, Long> {
             SELECT l FROM Livro l WHERE l.id = :id
             """)
     Livro findByIdToHandle(String id);
+
+    @Query("""
+            SELECT MAX(l.id) FROM Livro l
+            """)
+    long findLastId();
 }

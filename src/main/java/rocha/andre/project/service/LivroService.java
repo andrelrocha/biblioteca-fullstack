@@ -5,4 +5,6 @@ import rocha.andre.project.domain.livro.DTO.LivroReturnDTO;
 
 public interface LivroService {
     LivroReturnDTO createLivro(LivroDTO data);
+
+    LivroReturnDTO sugestaoLivro();
 }
