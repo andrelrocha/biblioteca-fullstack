@@ -36,6 +36,12 @@ public class LivroController {
         return ResponseEntity.ok(todosLivros);
     }
 
+    @GetMapping("/{livroId}")
+    public ResponseEntity getLivroBtId(@PathVariable long livroId) {
+        var livro = livroService.getLivroById(livroId);
+        return ResponseEntity.ok(livro);
+    }
+
     @GetMapping("/sugestao")
     public ResponseEntity sugestaoLivro() {
         var livroSugestao = livroService.sugestaoLivro();

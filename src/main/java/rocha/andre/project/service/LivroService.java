@@ -10,6 +10,7 @@ public interface LivroService {
     LivroReturnDTO createLivro(LivroDTO data);
     void deleteLivro(long livroId);
     List<LivroReturnDTO> getAllLivros();
+    LivroReturnDTO getLivroById(long livroId);
     LivroReturnDTO updateLivro(UpdateLivroDTO data, String livroId);
 
 

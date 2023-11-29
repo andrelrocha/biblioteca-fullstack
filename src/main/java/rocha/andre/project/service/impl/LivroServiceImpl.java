@@ -22,6 +22,9 @@ public class LivroServiceImpl implements LivroService {
     private GetAllLivrosUseCase getAllLivrosUseCase;
 
     @Autowired
+    private GetLivroById getLivroById;
+
+    @Autowired
     private GetRandomLivroUseCase getRandomLivroUseCase;
 
     @Autowired
@@ -42,6 +45,12 @@ public class LivroServiceImpl implements LivroService {
     public List<LivroReturnDTO> getAllLivros() {
         var livros = getAllLivrosUseCase.getAllLivros();
         return livros;
+    }
+
+    @Override
+    public LivroReturnDTO getLivroById(long livroId) {
+        var livro = getLivroById.getLivroById(livroId);
+        return livro;
     }
 
     @Override
