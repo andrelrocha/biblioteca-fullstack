@@ -6,9 +6,11 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rocha.andre.project.domain.emprestimo.DTO.EmprestimoDTO;
+import rocha.andre.project.domain.emprestimo.DTO.EmprestimoListagemDTO;
 import rocha.andre.project.domain.emprestimo.DTO.EmprestimoReturnDTO;
 import rocha.andre.project.service.EmprestimoService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -26,7 +28,7 @@ public class EmprestimoController {
 
     @GetMapping("/{tokenJWT}")
     @Transactional
-    public ResponseEntity<List<EmprestimoReturnDTO>> listarEmprestimos(@PathVariable String tokenJWT) {
+    public ResponseEntity<ArrayList<EmprestimoListagemDTO>> listarEmprestimos(@PathVariable String tokenJWT) {
         var emprestimo = emprestimoService.listaEmprestimos(tokenJWT);
         return ResponseEntity.ok(emprestimo);
     }
