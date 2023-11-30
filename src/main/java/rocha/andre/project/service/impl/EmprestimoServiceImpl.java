@@ -14,8 +14,8 @@ public class EmprestimoServiceImpl implements EmprestimoService {
 
 
     @Override
-    public EmprestimoReturnDTO emprestimoLivro(EmprestimoDTO data) {
-        var emprestimo = emprestimoUseCase.emprestimoLivro(data);
+    public EmprestimoReturnDTO emprestimoLivro(EmprestimoDTO data, String tokenJWT) {
+        var emprestimo = emprestimoUseCase.emprestimoLivro(data, tokenJWT);
         return emprestimo;
     }
 }

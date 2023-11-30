@@ -4,10 +4,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import rocha.andre.project.domain.emprestimo.DTO.EmprestimoDTO;
 import rocha.andre.project.domain.emprestimo.DTO.EmprestimoReturnDTO;
 import rocha.andre.project.service.EmprestimoService;
@@ -18,10 +15,10 @@ public class EmprestimoController {
     @Autowired
     private EmprestimoService emprestimoService;
 
-    @PostMapping
+    @PostMapping("/{tokenJWT}")
     @Transactional
-    public ResponseEntity<EmprestimoReturnDTO> realizarEmprestimo(@RequestBody EmprestimoDTO data) {
-        var emprestimo = emprestimoService.emprestimoLivro(data);
+    public ResponseEntity<EmprestimoReturnDTO> realizarEmprestimo(@PathVariable String tokenJWT, @RequestBody EmprestimoDTO data) {
+        var emprestimo = emprestimoService.emprestimoLivro(data, tokenJWT);
         return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(emprestimo);
     }
 }

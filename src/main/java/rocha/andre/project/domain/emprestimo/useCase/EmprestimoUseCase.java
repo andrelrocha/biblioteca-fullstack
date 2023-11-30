@@ -9,6 +9,7 @@ import rocha.andre.project.domain.emprestimo.EmprestimoRepository;
 import rocha.andre.project.domain.livro.LivroRepository;
 import rocha.andre.project.domain.user.UserRepository;
 import rocha.andre.project.infra.exceptions.ValidationException;
+import rocha.andre.project.infra.security.TokenService;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
@@ -22,14 +23,20 @@ public class EmprestimoUseCase {
     @Autowired
     private LivroRepository livroRepository;
 
-    public EmprestimoReturnDTO emprestimoLivro(EmprestimoDTO data) {
+    @Autowired
+    private TokenService tokenService;
+
+    public EmprestimoReturnDTO emprestimoLivro(EmprestimoDTO data, String tokenJWT) {
         var temEstoque = livroRepository.temEstoque(data.livro_id());
 
         if (!temEstoque) {
             throw new RuntimeException("O livro desejado não se encontra em estoque.");
         }
 
-        var user = userRepository.findById(data.user_id())
+        var userIdString = String.valueOf((tokenService.getUserIdFromToken(tokenJWT)).asInt());
+        var userId = Long.parseLong(userIdString);
+
+        var user = userRepository.findById(userId)
                 .orElseThrow(() -> new ValidationException("Não foi encontrado usuário para o id informado"));
 
         var livro = livroRepository.findById(data.livro_id())
@@ -38,7 +45,6 @@ public class EmprestimoUseCase {
         var dataAtual = LocalDateTime.now();
         var diasParaAdicionar = 7;
         var dataDevolucao = adicionarDiasUteis(dataAtual, diasParaAdicionar);
-
 
         var emprestimo = new Emprestimo(user, livro, dataDevolucao);
 
