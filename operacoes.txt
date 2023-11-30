@@ -1,10 +1,27 @@
 Operações:
-1. Realizar login como bibliotecário e usuário.
-2. Apenas o usuário pode alterar seus dados.
+1. Realizar login como bibliotecário e usuário.-- OK!!!!!
+2. Apenas o usuário pode alterar seus dados.  -- OK!!!!!
 3. Apenas bibliotecário pode cadastrar, editar e remover livros e listar todos os usuários.   -- OK!!!!!
+6. Sugerir livro.  -- OK!!!!!
+
+
+
+----------------------------------------
 4. Fazer empréstimos de livros.
+{
+esquema igual ao de agendar consulta (mas recebe o id do livro e user para transformar nas entidades), mas que atualize o campo quantidadeEstoque e confira se tem em estoque
+FRONT
+- recebe id do usuario p consultar no back do token localStorage
+- recebe livroId do cookie livro_id
+}
 5. Devolver um livro.
-6. Sugerir livro.
+{
+conferir data de devolução
+se tiver em atraso gera multa enviada por email
+aumenta quantidadeEstoque +1
+}
+
+
 7. Exibir um relatório com:
 a. Todos os empréstimos de um usuário e quanto ele gastou.
 b. Todos os empréstimos daquele livro.

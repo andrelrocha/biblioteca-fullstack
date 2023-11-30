@@ -30,4 +30,10 @@ public class Emprestimo {
     private Livro livro;
 
     private LocalDateTime date;
+
+    public Emprestimo(User user, Livro livro, LocalDateTime date) {
+        this.livro = livro;
+        this.user = user;
+        this.date = date;
+    }
 }

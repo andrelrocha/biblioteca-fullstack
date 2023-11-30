@@ -21,6 +21,7 @@ public class Livro {
     private String titulo;
     private String autor;
     private String assunto;
+    @Column(name = "quantidade_estoque")
     private int quantidadeEstoque;
 
     public Livro(LivroDTO data) {
@@ -30,37 +31,6 @@ public class Livro {
         this.quantidadeEstoque = data.quantidadeEstoque();
     }
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getAutor() {
-        return autor;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
-
-    public String getAssunto() {
-        return assunto;
-    }
-
-    public void setAssunto(String assunto) {
-        this.assunto = assunto;
-    }
-
-    public int getQuantidadeEstoque() {
-        return quantidadeEstoque;
-    }
-
-    public void setQuantidadeEstoque(int quantidadeEstoque) {
-        this.quantidadeEstoque = quantidadeEstoque;
-    }
 
     public void updateLivro(UpdateLivroDTO data) {
         if (data.titulo() != null) {
@@ -78,5 +48,9 @@ public class Livro {
         if (data.quantidadeEstoque() != 0) {
             this.quantidadeEstoque = data.quantidadeEstoque();
         }
+    }
+
+    public void diminuiEstoque() {
+        this.quantidadeEstoque--;
     }
 }

@@ -49,6 +49,7 @@ public class LivroController {
     }
 
     @PutMapping("/{livroId}")
+    @Transactional
     public ResponseEntity<LivroReturnDTO> updateLivro(@RequestBody UpdateLivroDTO data, @PathVariable String livroId) {
         var livro = livroService.updateLivro(data, livroId);
         return ResponseEntity.ok(livro);

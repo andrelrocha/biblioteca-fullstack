@@ -20,4 +20,12 @@ public interface LivroRepository extends JpaRepository<Livro, Long> {
             SELECT MAX(l.id) FROM Livro l
             """)
     long findLastId();
+
+    @Query("""
+            SELECT CASE WHEN l.quantidadeEstoque > 0 
+            THEN true 
+            ELSE false END 
+            FROM Livro l WHERE l.id = :livroId
+            """)
+    boolean temEstoque(Long livroId);
 }
