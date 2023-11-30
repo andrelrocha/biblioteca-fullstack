@@ -13,4 +13,11 @@ public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
     WHERE e.user.id = :userId
     """)
     List<Emprestimo> allEmprestimosByUserId(Long userId);
+
+    @Query("""
+    SELECT SUM(e.valor) 
+    FROM Emprestimo e 
+    WHERE e.user.id = :userId
+    """)
+    Double getTotalValorByUserId(Long userId);
 }

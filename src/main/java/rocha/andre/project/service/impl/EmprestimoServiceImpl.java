@@ -7,6 +7,7 @@ import rocha.andre.project.domain.emprestimo.DTO.EmprestimoListagemDTO;
 import rocha.andre.project.domain.emprestimo.DTO.EmprestimoReturnDTO;
 import rocha.andre.project.domain.emprestimo.useCase.EmprestimoUseCase;
 import rocha.andre.project.domain.emprestimo.useCase.ListaEmprestimosUseCase;
+import rocha.andre.project.domain.emprestimo.useCase.SomaValoresEmprestimosUseCase;
 import rocha.andre.project.service.EmprestimoService;
 
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ public class EmprestimoServiceImpl implements EmprestimoService {
     private EmprestimoUseCase emprestimoUseCase;
     @Autowired
     private ListaEmprestimosUseCase listaEmprestimosUseCase;
+    @Autowired
+    private SomaValoresEmprestimosUseCase somaValoresEmprestimosUseCase;
 
 
     @Override
@@ -29,5 +32,11 @@ public class EmprestimoServiceImpl implements EmprestimoService {
     public ArrayList<EmprestimoListagemDTO> listaEmprestimos(String tokenJWT) {
         var emprestimos = listaEmprestimosUseCase.listaEmprestimos(tokenJWT);
         return emprestimos;
+    }
+
+    @Override
+    public double GetValorTotalEmprestimo(String tokenJWT) {
+        var valor = somaValoresEmprestimosUseCase.GetValorTotalEmprestimo(tokenJWT);
+        return valor;
     }
 }

@@ -11,7 +11,6 @@ import rocha.andre.project.domain.emprestimo.DTO.EmprestimoReturnDTO;
 import rocha.andre.project.service.EmprestimoService;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping("/emprestimo")
@@ -30,6 +29,13 @@ public class EmprestimoController {
     @Transactional
     public ResponseEntity<ArrayList<EmprestimoListagemDTO>> listarEmprestimos(@PathVariable String tokenJWT) {
         var emprestimo = emprestimoService.listaEmprestimos(tokenJWT);
+        return ResponseEntity.ok(emprestimo);
+    }
+
+    @GetMapping("/calcular/{tokenJWT}")
+    @Transactional
+    public ResponseEntity calcularValorTotal(@PathVariable String tokenJWT) {
+        var emprestimo = emprestimoService.GetValorTotalEmprestimo(tokenJWT);
         return ResponseEntity.ok(emprestimo);
     }
 }

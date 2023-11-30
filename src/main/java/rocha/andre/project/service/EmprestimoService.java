@@ -10,4 +10,5 @@ import java.util.List;
 public interface EmprestimoService {
     EmprestimoReturnDTO emprestimoLivro(EmprestimoDTO data, String tokenJWT);
     ArrayList<EmprestimoListagemDTO> listaEmprestimos(String tokenJWT);
+    double GetValorTotalEmprestimo(String tokenJWT);
 }
