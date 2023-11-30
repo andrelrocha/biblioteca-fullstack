@@ -6,7 +6,6 @@ import rocha.andre.project.domain.livro.DTO.LivroReturnDTO;
 import rocha.andre.project.domain.livro.LivroRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class GetAllLivrosUseCase {
@@ -14,7 +13,7 @@ public class GetAllLivrosUseCase {
     private LivroRepository repository;
 
     public List<LivroReturnDTO> getAllLivros() {
-        return repository.findAll().stream().map(LivroReturnDTO::new).collect(Collectors.toList());
+        return repository.findAll().stream().map(LivroReturnDTO::new).toList();
     }
 
 }
