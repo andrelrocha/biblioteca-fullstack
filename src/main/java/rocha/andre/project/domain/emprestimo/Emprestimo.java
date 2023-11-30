@@ -31,9 +31,16 @@ public class Emprestimo {
 
     private LocalDateTime date;
 
+    private int valor;
+
     public Emprestimo(User user, Livro livro, LocalDateTime date) {
         this.livro = livro;
         this.user = user;
         this.date = date;
+        this.valor = 2;
+    }
+
+    public void multaAtraso() {
+        this.valor++;
     }
 }
