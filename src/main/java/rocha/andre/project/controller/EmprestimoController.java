@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rocha.andre.project.domain.emprestimo.DTO.EmprestimoDTO;
 import rocha.andre.project.domain.emprestimo.DTO.EmprestimoListagemDTO;
+import rocha.andre.project.domain.emprestimo.DTO.EmprestimoRetornarDTO;
 import rocha.andre.project.domain.emprestimo.DTO.EmprestimoReturnDTO;
 import rocha.andre.project.service.EmprestimoService;
 
@@ -44,5 +45,12 @@ public class EmprestimoController {
     public ResponseEntity listarEmprestimosDoLivro(@PathVariable Long livroId) {
         var emprestimos = emprestimoService.getAllEmprestimosByLivroId(livroId);
         return ResponseEntity.ok(emprestimos);
+    }
+
+    @DeleteMapping("/retornar/{tokenJWT}")
+    @Transactional
+    public ResponseEntity retornarLivro(@PathVariable String tokenJWT, @RequestBody EmprestimoRetornarDTO data) {
+        emprestimoService.retornarLivro(data, tokenJWT);
+        return ResponseEntity.noContent().build();
     }
 }

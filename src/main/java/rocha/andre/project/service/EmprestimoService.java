@@ -1,9 +1,6 @@
 package rocha.andre.project.service;
 
-import rocha.andre.project.domain.emprestimo.DTO.EmprestimoDTO;
-import rocha.andre.project.domain.emprestimo.DTO.EmprestimoListagemDTO;
-import rocha.andre.project.domain.emprestimo.DTO.EmprestimoReturnDTO;
-import rocha.andre.project.domain.emprestimo.DTO.EmprestimosLivroDTO;
+import rocha.andre.project.domain.emprestimo.DTO.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,4 +10,5 @@ public interface EmprestimoService {
     ArrayList<EmprestimoListagemDTO> listaEmprestimos(String tokenJWT);
     double getValorTotalEmprestimo(String tokenJWT);
     ArrayList<EmprestimosLivroDTO> getAllEmprestimosByLivroId(Long livroId);
+    void retornarLivro(EmprestimoRetornarDTO data, String tokenJWT);
 }

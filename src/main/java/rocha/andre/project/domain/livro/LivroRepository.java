@@ -12,6 +12,11 @@ public interface LivroRepository extends JpaRepository<Livro, Long> {
     boolean livroExistsByTitulo(String titulo);
 
     @Query("""
+            SELECT l FROM Livro l WHERE l.titulo = :titulo
+            """)
+    Livro findByTituloToHandle(String titulo);
+
+    @Query("""
             SELECT l FROM Livro l WHERE l.id = :id
             """)
     Livro findByIdToHandle(String id);

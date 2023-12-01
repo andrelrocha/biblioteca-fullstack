@@ -53,4 +53,8 @@ public class Livro {
     public void diminuiEstoque() {
         this.quantidadeEstoque--;
     }
+
+    public void aumentaEstoque() {
+        this.quantidadeEstoque++;
+    }
 }

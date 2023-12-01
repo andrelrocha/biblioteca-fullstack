@@ -5,20 +5,15 @@ Operações:
 4. Fazer empréstimos de livros.  -- OK!!!!!
 6. Sugerir livro.  -- OK!!!!!
 7. Exibir um relatório com:
-a. Todos os empréstimos de um usuário e quanto ele gastou.
-b. Todos os empréstimos daquele livro.
+a. Todos os empréstimos de um usuário e quanto ele gastou. -- OK!!!!!
+b. Todos os empréstimos daquele livro. -- OK!!!!!
+8. Sistema de saldo para usuário -- OK!!!!!
+9. Autenticação por tokenJWT -- OK!!!!!
+10. Aplicação modularizada e protegida com spring security -- OK!!!!!
+11. API REST -- OK!!!!!
 
 
 ----------------------------------------
 
 
 5. Devolver um livro.
-{
-conferir data de devolução
-se tiver em atraso gera multa
-aumenta quantidadeEstoque +1
-}
-
-
-FAZER SISTEMA DE SALDO DO USUÁRIO
-- ROTA PARA ADICIONAR SALDO (CRIAR -- FRONT TER O BOTÃO DE "QUANTO VOCÊ QUER ADICIONAR NA SUA CONTA")
