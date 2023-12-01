@@ -7,7 +7,9 @@ import rocha.andre.project.domain.emprestimo.DTO.EmprestimoReturnDTO;
 import rocha.andre.project.domain.emprestimo.Emprestimo;
 import rocha.andre.project.domain.emprestimo.EmprestimoRepository;
 import rocha.andre.project.domain.livro.LivroRepository;
+import rocha.andre.project.domain.user.User;
 import rocha.andre.project.domain.user.UserRepository;
+import rocha.andre.project.infra.exceptions.DontHaveEnoughFunds;
 import rocha.andre.project.infra.exceptions.ValidationException;
 import rocha.andre.project.infra.security.TokenService;
 
@@ -27,24 +29,20 @@ public class EmprestimoUseCase {
     private TokenService tokenService;
 
     public EmprestimoReturnDTO emprestimoLivro(EmprestimoDTO data, String tokenJWT) {
-        var temEstoque = livroRepository.temEstoque(data.livro_id());
+        var livroId = data.livro_id();
+        validaEstoque(livroId);
 
-        if (!temEstoque) {
-            throw new RuntimeException("O livro desejado não se encontra em estoque.");
-        }
-
-        var userIdString = String.valueOf((tokenService.getUserIdFromToken(tokenJWT)).asInt());
-        var userId = Long.parseLong(userIdString);
+        var userId = (tokenService.getUserIdFromToken(tokenJWT)).asLong();
 
         var user = userRepository.findById(userId)
                 .orElseThrow(() -> new ValidationException("Não foi encontrado usuário para o id informado"));
 
+        validaSaldo(user);
+
         var livro = livroRepository.findById(data.livro_id())
                 .orElseThrow(() -> new ValidationException("Não foi encontrado livro para o id informado"));
 
-        var dataAtual = LocalDateTime.now();
-        var diasParaAdicionar = 7;
-        var dataDevolucao = adicionarDiasUteis(dataAtual, diasParaAdicionar);
+        var dataDevolucao = calculaDias();
 
         var emprestimo = new Emprestimo(user, livro, dataDevolucao);
 
@@ -53,6 +51,29 @@ public class EmprestimoUseCase {
         livro.diminuiEstoque();
 
         return new EmprestimoReturnDTO(emprestimo);
+    }
+
+    private void validaEstoque(Long livroId) {
+        var temEstoque = livroRepository.temEstoque(livroId);
+
+        if (!temEstoque) {
+            throw new RuntimeException("O livro desejado não se encontra em estoque.");
+        }
+    }
+
+    private void validaSaldo(User user) {
+        var valorEmprestimoMax = 3.00;
+        var saldoUser = user.getSaldo();
+        if (saldoUser < valorEmprestimoMax) {
+            throw new DontHaveEnoughFunds("Usuário não possui saldo suficiente para a transação.");
+        }
+    }
+
+    private LocalDateTime calculaDias() {
+        var dataAtual = LocalDateTime.now();
+        var diasParaAdicionar = 7;
+        var dataDevolucao = adicionarDiasUteis(dataAtual, diasParaAdicionar);
+        return dataDevolucao;
     }
 
     private LocalDateTime adicionarDiasUteis(LocalDateTime dataAtual, int dias) {

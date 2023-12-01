@@ -99,6 +99,11 @@ public class ExceptionHandling {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("A URL não foi encontrada.");
     }
 
+    @ExceptionHandler(DontHaveEnoughFunds.class)
+    public ResponseEntity handleDontHaveEnoughFunds(DontHaveEnoughFunds ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity handleException(Exception ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro: " + ex.getLocalizedMessage());
