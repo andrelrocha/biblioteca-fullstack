@@ -38,13 +38,11 @@ public class RetornarLivroUseCase {
         var now = LocalDateTime.now();
         var emprestimoDataEntrega = emprestimo.getDate();
 
-        var novoSaldo = 0.0;
-
         if (now.isAfter(emprestimoDataEntrega)) {
-            novoSaldo = saldo - 3;
-        } else {
-            novoSaldo = saldo - 2;
+            emprestimo.multaAtraso();
         }
+
+        var novoSaldo = saldo - emprestimo.getValor();
 
         user.setSaldo(novoSaldo);
 

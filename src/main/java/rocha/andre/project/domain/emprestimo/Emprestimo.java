@@ -33,6 +33,8 @@ public class Emprestimo {
 
     private int valor;
 
+    private boolean active;
+
     public Emprestimo(User user, Livro livro, LocalDateTime date) {
         this.livro = livro;
         this.user = user;
