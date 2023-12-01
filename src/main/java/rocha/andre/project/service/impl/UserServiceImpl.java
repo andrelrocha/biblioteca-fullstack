@@ -13,6 +13,8 @@ import java.util.List;
 @Transactional
 public class UserServiceImpl implements UserService {
     @Autowired
+    private AddSaldoUseCase addSaldoUseCase;
+    @Autowired
     private CreateUserUseCase createUserUseCase;
     @Autowired
     private ListAllUsersUseCase listAllUsersUseCase;
@@ -22,6 +24,13 @@ public class UserServiceImpl implements UserService {
     private PerformLoginUseCase performLoginUseCase;
     @Autowired
     private UpdateUserUseCase updateUserUseCase;
+
+    @Override
+    public String addSaldo(SaldoDTO valor, String tokenJWT) {
+        addSaldoUseCase.addSaldo(valor, tokenJWT);
+        var stringSuccess = "Saldo de R$ " + valor.valor() + " adicionado à carteira";
+        return stringSuccess;
+    }
 
     @Override
     public TokenJwtDTO performLogin(UserLoginDTO data) {

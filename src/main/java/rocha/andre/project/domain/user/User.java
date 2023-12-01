@@ -28,11 +28,14 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role tipo;
 
+    private double saldo;
+
 
     public User (UserDTO data, int matricula) {
         this.login = data.login();
         this.tipo = data.tipo();
         this.matricula = matricula;
+        this.saldo = 0;
     }
 
     @Override
@@ -75,6 +78,10 @@ public class User implements UserDetails {
 
     public void setPassword(String encodedPassword) {
         this.senha = encodedPassword;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
     }
 
 

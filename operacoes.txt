@@ -15,8 +15,10 @@ b. Todos os empréstimos daquele livro.
 5. Devolver um livro.
 {
 conferir data de devolução
-se tiver em atraso gera multa enviada por email
+se tiver em atraso gera multa
 aumenta quantidadeEstoque +1
 }
 
 
+FAZER SISTEMA DE SALDO DO USUÁRIO
+- ROTA PARA ADICIONAR SALDO (CRIAR -- FRONT TER O BOTÃO DE "QUANTO VOCÊ QUER ADICIONAR NA SUA CONTA")
