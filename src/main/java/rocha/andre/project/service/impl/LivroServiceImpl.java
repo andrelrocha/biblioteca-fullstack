@@ -2,7 +2,6 @@ package rocha.andre.project.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import rocha.andre.project.domain.emprestimo.useCase.RetornarLivroUseCase;
 import rocha.andre.project.domain.livro.DTO.LivroDTO;
 import rocha.andre.project.domain.livro.DTO.LivroReturnDTO;
 import rocha.andre.project.domain.livro.DTO.UpdateLivroDTO;

@@ -25,7 +25,8 @@ public class ListaEmprestimosLivroUseCase {
             var emprestimoDTO = new EmprestimosLivroDTO(
                     emprestimo.getId(),
                     emprestimo.getUser().getId(),
-                    dataFormatada
+                    dataFormatada,
+                    emprestimo.isRetornado()
             );
 
             emprestimosDTO.add(emprestimoDTO);

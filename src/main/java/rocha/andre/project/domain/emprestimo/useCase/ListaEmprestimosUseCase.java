@@ -3,17 +3,13 @@ package rocha.andre.project.domain.emprestimo.useCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import rocha.andre.project.domain.emprestimo.DTO.EmprestimoListagemDTO;
-import rocha.andre.project.domain.emprestimo.DTO.EmprestimoReturnDTO;
 import rocha.andre.project.domain.emprestimo.Emprestimo;
 import rocha.andre.project.domain.emprestimo.EmprestimoRepository;
-import rocha.andre.project.domain.livro.Livro;
 import rocha.andre.project.domain.livro.LivroRepository;
 import rocha.andre.project.infra.security.TokenService;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class ListaEmprestimosUseCase {
