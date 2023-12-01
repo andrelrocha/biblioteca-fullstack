@@ -46,4 +46,8 @@ public class Emprestimo {
     public void multaAtraso() {
         this.valor++;
     }
+
+    public void retornaLivro() {
+        this.retornado = true;
+    }
 }

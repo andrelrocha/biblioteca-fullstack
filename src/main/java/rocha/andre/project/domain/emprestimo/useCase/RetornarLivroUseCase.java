@@ -49,6 +49,6 @@ public class RetornarLivroUseCase {
         var livro = livroRepository.findByTituloToHandle(data.titulo());
         livro.aumentaEstoque();
 
-        emprestimoRepository.deleteById(data.id());
+        emprestimo.retornaLivro();
     }
 }
