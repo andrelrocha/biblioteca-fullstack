@@ -62,7 +62,11 @@ public class EmprestimoUseCase {
     }
 
     private void validaSaldo(User user) {
-        var valorEmprestimoMax = 3.00;
+        var quantidadeEmprestimos = emprestimoRepository.countEmprestimosByUserId(user.getId());
+        var valorEmprestimoComMulta = 3.00;
+        var valorEmprestimoMax = (quantidadeEmprestimos*valorEmprestimoComMulta) + valorEmprestimoComMulta;
+
+
         var saldoUser = user.getSaldo();
         if (saldoUser < valorEmprestimoMax) {
             throw new DontHaveEnoughFunds("Usuário não possui saldo suficiente para a transação.");

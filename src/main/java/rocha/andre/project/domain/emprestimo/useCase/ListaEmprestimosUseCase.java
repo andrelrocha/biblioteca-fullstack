@@ -28,8 +28,7 @@ public class ListaEmprestimosUseCase {
         var userIdString = String.valueOf((tokenService.getUserIdFromToken(tokenJWT)).asInt());
         var userId = Long.parseLong(userIdString);
 
-        //WITH ACTIVE = TRUE
-        var emprestimos = repository.allEmprestimosByUserId(userId);
+        var emprestimos = repository.allEmprestimosByUserIdWhereRetornadoIsFalse(userId);
 
         var emprestimosDTO = new ArrayList<EmprestimoListagemDTO>();
         var formatterOutput = DateTimeFormatter.ofPattern("dd/MM/yyyy");

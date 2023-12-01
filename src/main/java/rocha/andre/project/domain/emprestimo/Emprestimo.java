@@ -33,13 +33,14 @@ public class Emprestimo {
 
     private int valor;
 
-    private boolean active;
+    private boolean retornado;
 
     public Emprestimo(User user, Livro livro, LocalDateTime date) {
         this.livro = livro;
         this.user = user;
         this.date = date;
         this.valor = 2;
+        this.retornado = false;
     }
 
     public void multaAtraso() {

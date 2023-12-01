@@ -8,11 +8,20 @@ import java.util.List;
 public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
 
     @Query("""
-    SELECT e 
-    FROM Emprestimo e 
-    WHERE e.user.id = :userId
+        SELECT e 
+        FROM Emprestimo e 
+        WHERE e.user.id = :userId 
+        AND e.retornado = false
+        """)
+    List<Emprestimo> allEmprestimosByUserIdWhereRetornadoIsFalse(Long userId);
+
+    @Query("""
+        SELECT COUNT(e) 
+        FROM Emprestimo e 
+        WHERE e.user.id = :userId
     """)
-    List<Emprestimo> allEmprestimosByUserId(Long userId);
+    Long countEmprestimosByUserId(Long userId);
+
 
     @Query("""
     SELECT SUM(e.valor) 

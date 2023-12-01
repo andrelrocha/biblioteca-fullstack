@@ -3,6 +3,7 @@ Operações:
 2. Apenas o usuário pode alterar seus dados.  -- OK!!!!!
 3. Apenas bibliotecário pode cadastrar, editar e remover livros e listar todos os usuários.   -- OK!!!!!
 4. Fazer empréstimos de livros.  -- OK!!!!!
+5. Devolver um livro.  -- OK!!!!!
 6. Sugerir livro.  -- OK!!!!!
 7. Exibir um relatório com:
 a. Todos os empréstimos de um usuário e quanto ele gastou. -- OK!!!!!
@@ -14,6 +15,3 @@ b. Todos os empréstimos daquele livro. -- OK!!!!!
 
 
 ----------------------------------------
-
-
-5. Devolver um livro.
