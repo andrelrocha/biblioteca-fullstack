@@ -35,7 +35,14 @@ public class EmprestimoController {
     @GetMapping("/calcular/{tokenJWT}")
     @Transactional
     public ResponseEntity calcularValorTotal(@PathVariable String tokenJWT) {
-        var emprestimo = emprestimoService.GetValorTotalEmprestimo(tokenJWT);
+        var emprestimo = emprestimoService.getValorTotalEmprestimo(tokenJWT);
         return ResponseEntity.ok(emprestimo);
+    }
+
+    @GetMapping("/emprestimoslivro/{livroId}")
+    @Transactional
+    public ResponseEntity listarEmprestimosDoLivro(@PathVariable Long livroId) {
+        var emprestimos = emprestimoService.getAllEmprestimosByLivroId(livroId);
+        return ResponseEntity.ok(emprestimos);
     }
 }

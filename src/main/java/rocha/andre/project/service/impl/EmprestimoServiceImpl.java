@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 import rocha.andre.project.domain.emprestimo.DTO.EmprestimoDTO;
 import rocha.andre.project.domain.emprestimo.DTO.EmprestimoListagemDTO;
 import rocha.andre.project.domain.emprestimo.DTO.EmprestimoReturnDTO;
+import rocha.andre.project.domain.emprestimo.DTO.EmprestimosLivroDTO;
 import rocha.andre.project.domain.emprestimo.useCase.EmprestimoUseCase;
+import rocha.andre.project.domain.emprestimo.useCase.ListaEmprestimosLivroUseCase;
 import rocha.andre.project.domain.emprestimo.useCase.ListaEmprestimosUseCase;
 import rocha.andre.project.domain.emprestimo.useCase.SomaValoresEmprestimosUseCase;
 import rocha.andre.project.service.EmprestimoService;
@@ -18,6 +20,8 @@ public class EmprestimoServiceImpl implements EmprestimoService {
     private EmprestimoUseCase emprestimoUseCase;
     @Autowired
     private ListaEmprestimosUseCase listaEmprestimosUseCase;
+    @Autowired
+    private ListaEmprestimosLivroUseCase listaEmprestimosLivroUseCase;
     @Autowired
     private SomaValoresEmprestimosUseCase somaValoresEmprestimosUseCase;
 
@@ -35,8 +39,14 @@ public class EmprestimoServiceImpl implements EmprestimoService {
     }
 
     @Override
-    public double GetValorTotalEmprestimo(String tokenJWT) {
+    public double getValorTotalEmprestimo(String tokenJWT) {
         var valor = somaValoresEmprestimosUseCase.GetValorTotalEmprestimo(tokenJWT);
         return valor;
+    }
+
+    @Override
+    public ArrayList<EmprestimosLivroDTO> getAllEmprestimosByLivroId(Long livroId) {
+        var emprestimos = listaEmprestimosLivroUseCase.getAllEmprestimosByLivroId(livroId);
+        return emprestimos;
     }
 }
