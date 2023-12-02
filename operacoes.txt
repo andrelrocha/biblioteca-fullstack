@@ -12,6 +12,7 @@ b. Todos os empréstimos daquele livro. -- OK!!!!!
 9. Autenticação por tokenJWT -- OK!!!!!
 10. Aplicação modularizada e protegida com spring security -- OK!!!!!
 11. API REST -- OK!!!!!
-
+12. Banco de dados local MySQL -- OK!!!!!
+13. Sistema de auditoria de empréstimos com soft delete -- OK!!!!!
 
 ----------------------------------------
