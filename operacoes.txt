@@ -14,5 +14,7 @@ b. Todos os empréstimos daquele livro. -- OK!!!!!
 11. API REST -- OK!!!!!
 12. Banco de dados local MySQL -- OK!!!!!
 13. Sistema de auditoria de empréstimos com soft delete -- OK!!!!!
+14. Sistema de interceptor no front com validações do tokenJWT -- OK!!!!!
+15. Telas desenvolvidas com bootstrap e js, com thymeleaf de server -- OK!!!!!
 
 ----------------------------------------
